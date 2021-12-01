@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'about.dart';
+import 'gratitude.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -28,7 +29,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _openGratitudePage({
     required BuildContext context,
-  }) {}
+    bool fullScreenDialog = false,
+  }) async {
+    final String _gratitudeResponse = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Gratitude(radioGroupValue: -1),
+        fullscreenDialog: fullScreenDialog,
+      ),
+    );
+    setState(() => _howAreYou = _gratitudeResponse);
+  }
 
   @override
   Widget build(BuildContext context) {
